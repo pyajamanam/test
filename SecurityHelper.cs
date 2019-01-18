@@ -1,26 +1,26 @@
-﻿using System.Collections.Generic;
-using M7.Apps.WebSites.Common.Models;
-using M7.Apps.WebSites.Common.Framework.Helpers;
-using M7.Library.Common;
-using M7.Library.DTO;
-using M7.Library.DTO.DtoType;
-using M7.Library.DTO.ResultType;
-using M7.Library.Shared;
+using System.Collections.Generic;
+using **.Apps.WebSites.Common.Models;
+using **.Apps.WebSites.Common.Framework.Helpers;
+using **.Library.Common;
+using **.Library.DTO;
+using **.Library.DTO.DtoType;
+using **.Library.DTO.ResultType;
+using **.Library.Shared;
 using System;
 using System.Globalization;
 using System.Linq;
 using System.Web;
-using M7.Providers.Product.ClientExtensions;
+using **.Providers.Product.ClientExtensions;
 using Umbraco.Core.Security;
 using Cms = umbraco.cms;
 using System.Web.Security;
 using System.Security.Principal;
 using System.Security.Claims;
-using M7.Apps.WebSites.Helpers;
-using M7.Apps.WebSites.Models;
-using M7.Apps.WebSites.Security.DataLayer;
+using **.Apps.WebSites.Helpers;
+using **.Apps.WebSites.Models;
+using **.Apps.WebSites.Security.DataLayer;
 
-namespace M7.Apps.WebSites.Framework.Helpers
+namespace **.Apps.WebSites.Framework.Helpers
 {
 
     public static class SecurityHelper
@@ -262,7 +262,7 @@ namespace M7.Apps.WebSites.Framework.Helpers
                 if (IsDealer)
                 {
                     source = "Dealer";
-                    var company = Configuration.ConfigurationHelper.M7WsConfig.Company;
+                    var company = Configuration.ConfigurationHelper.**WsConfig.Company;
                     if (company != Company.TVVLAANDEREN && company != Company.TELESAT)
                         dealerId = GetDealerId(createdBy);
                     // This is only required for HDAustria for now. As we are yet to map the dealers to correct groups in TVV/TSAT for campaigns.
@@ -286,7 +286,7 @@ namespace M7.Apps.WebSites.Framework.Helpers
                     DealerId = dealerId
 
                 };
-                M7.ServiceBus.Extern.Basket.GetService().UpdateSourceToBasket(updateBasketInfo);
+                **.ServiceBus.Extern.Basket.GetService().UpdateSourceToBasket(updateBasketInfo);
             }
         }
 
@@ -297,8 +297,8 @@ namespace M7.Apps.WebSites.Framework.Helpers
                 return BasketHelper.GetDefaultDealerId();
             }
 
-            //UserName is IBS Number. This should be the external billing id for the dealers in M7Standing.
-            var dealerInfo = M7.ServiceBus.Extern.Dealer.GetService().GetDealerByCmsIdOrName(dealerName);
+            //UserName is IBS Number. This should be the external billing id for the dealers in **Standing.
+            var dealerInfo = **.ServiceBus.Extern.Dealer.GetService().GetDealerByCmsIdOrName(dealerName);
             //It says CMSID but the code looks for BillingSystemID.
             if (dealerInfo.Result.IsNotSuccess)
             {
